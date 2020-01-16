@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab2</string>
-    <string name="lookatmyGUI_message">Look at my GUI</string>
-    <string name="ButtonText">Click here</string>
-    <string name="CheckBox">Check this out!</string>
-    <string name="Switch">Switch on/off</string>
+
+    <string name="textView" translatable="false">Look at my GUI</string>
+    <string name="button2" translatable="false">Click here</string>
+    <string name="checkBox" translatable="false">Check this out!</string>
+    <string name="switch2" translatable="false">Switch on/off</string>
+    <string name="typeHere" translatable="false">Type here</string>
 </resources>
