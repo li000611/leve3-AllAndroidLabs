@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="app_name" translatable="false">android labs</string>
     <string name="textView" translatable="false">Look at my GUI</string>
     <string name="button2" translatable="false">Click here</string>
     <string name="checkBox" translatable="false">Check this out!</string>

@@ -22,11 +22,12 @@
 
 <LinearLayout
     android:orientation="horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/button2"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
@@ -45,9 +46,9 @@
 </LinearLayout>
 
 
-<LinearLayout
+    <LinearLayout
 android:orientation="horizontal"
-android:layout_width="wrap_content"
+android:layout_width="match_parent"
 android:layout_height="wrap_content">
 
     <ImageButton
@@ -56,22 +57,23 @@ android:layout_height="wrap_content">
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/flag" />
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/switch2" />
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch2" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/textView2"
-            android:layout_width="362dp"
-            android:layout_height="43dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/typeHere"
             android:inputType="textPersonName" />
     </LinearLayout>
