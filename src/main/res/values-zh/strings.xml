@@ -3,4 +3,9 @@
     <string name="app_name">Lab1</string>
     <string name="hello_message">你好！</string>
     <string name="ButtonText">我是一个按钮</string>
+    <string name="button2" translatable="false">点击这里</string>
+    <string name="checkBox" translatable="false">敲这里</string>
+    <string name="switch2" translatable="false">打开／关掉</string>
+    <string name="textView" translatable="false">看着我的ＧＵＩ</string>
+    <string name="typehere" translatable="false">在这里打字</string>
 </resources>
