@@ -30,7 +30,7 @@ public class MainActivity<compoundButton> extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_relative);
+        setContentView(R.layout.activity_main_grid);
 
         cb = (CheckBox) findViewById(R.id.checkBox);
         EditText theEdit = findViewById(R.id.editText);

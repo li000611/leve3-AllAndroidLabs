@@ -3,12 +3,9 @@
          xmlns:app="http://schemas.android.com/apk/res-auto"
          android:orientation="vertical"
          android:layout_width="match_parent"
-         android:layout_weight="1"
-         android:layout_gravity="fill"
          android:layout_height="match_parent">
 
    <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -17,23 +14,21 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="@string/textView"
-           android:textSize="30dp" />
+           android:textSize="30sp" />
    </LinearLayout>
 
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <Button
-        android:id="@+id/button2"
-
-        android:layout_width="wrap_content"
+   <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+       <Button
+          android:id="@+id/button2"
+           android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
         android:layout_weight="1"
         android:text="@string/button2"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -42,12 +37,12 @@
         android:layout_gravity="fill"
         android:layout_weight="1"
         android:text="@string/checkBox"
-        android:onClick="sendMessage"/>
+        android:onClick="myFirstMethod"/>
 </LinearLayout>
 
 
     <LinearLayout
-android:orientation="horizontal"
+
 android:layout_width="match_parent"
 android:layout_height="wrap_content">
 
@@ -66,7 +61,6 @@ android:layout_height="wrap_content">
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -78,6 +72,11 @@ android:layout_height="wrap_content">
             android:inputType="textPersonName" />
     </LinearLayout>
 
-
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="BasicToast"
+     ></EditText>
 
 </LinearLayout>
