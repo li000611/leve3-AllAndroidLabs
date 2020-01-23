@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab2</string>
-    <string name="hello_message">你好！</string>
-    <string name="ButtonText">我是一个按钮</string>
-    <string name="button2" translatable="false">点击这里</string>
-    <string name="checkBox" translatable="false">敲这里</string>
-    <string name="switch2" translatable="false">打开／关掉</string>
-    <string name="textView" translatable="false">看着我的ＧＵＩ</string>
-    <string name="typeHere" translatable="false">在这里打字</string>
-    <string name="toast_message" translatable="false">这里有更多信息</string>
+    <string name="app_name">Lab3</string>
+    <string name="textView1">输入你的邮箱地址: </string>
+    <string name="textView2">输入你的密码:</string>
+
 </resources>
