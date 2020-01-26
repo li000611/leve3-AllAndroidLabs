@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("email", editText.getText().toString());
             editor.commit();
         }
-
-
 }
 
 

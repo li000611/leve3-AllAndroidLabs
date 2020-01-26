@@ -3,5 +3,17 @@
     <string name="app_name">Lab3</string>
     <string name="textView1" translatable="false">Enter your email address: </string>
     <string name="textView2" translatable="false">Type your password:</string>
+    <string name="textView3" translatable="false">Your profile</string>
+    <string name="textView4" translatable="false">Your name:</string>
+    <string name="textView5" translatable="false">Your email:</string>
+    <string name="textView6" translatable="false">Your picture</string>
+    <string name="textView7" translatabe="false" >Click the button above to take a picture</string>
+    <string name ="editText" translatable="false">Type email here</string>
+    <string name = "button"  translatable = "false">Login</string>
+    <string name ="editText1" translatable="false">Type email here</string>
+    <string name ="editText2" translatable="false"></string>
+    <string name ="editText3" translatable="false"></string>
+
+
 
 </resources>
