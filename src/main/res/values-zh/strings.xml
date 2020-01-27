@@ -3,11 +3,13 @@
     <string name="app_name">Lab3</string>
     <string name="textView1">输入你的邮箱地址: </string>
     <string name="textView2">输入你的密码:</string>
-    <string name="textView3" >你的文件</string>
-    <string name="textView4" >你的名字：</string>
-    <string name="textView5" >你的邮箱：</string>
-    <string name="textView6" >你的照片</string>
-    <string name="textView7" >点击这里拍照片</string>
-    <string name="editText1" >输入你的邮箱</string>
-    <string name="button" >进入</string>
+    <string name="yourprofile" >你的文件</string>
+    <string name="yourname" >你的名字：</string>
+    <string name="youremail" >你的邮箱：</string>
+    <string name="yourpicture" >你的照片</string>
+    <string name="clickthebuttontotakeapicture" >点击这里拍照片</string>
+    <string name="enteryourname" >输入你的名字</string>
+    <string name="enteryouremail" >输入你的邮箱</string>
+    <string name = "button">进入</string>
+
 </resources>

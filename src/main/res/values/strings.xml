@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lab3</string>
-    <string name="textView1" translatable="false">Enter your email address: </string>
-    <string name="textView2" translatable="false">Type your password:</string>
-    <string name = "button"  translatable = "false">Login</string>
-    <string name="textView3" translatable="false">Your profile</string>
-    <string name="textView4" translatable="false">Your name:</string>
-    <string name="textView5" translatable="false">Your email:</string>
-    <string name="textView6" translatable="false">Your picture</string>
-    <string name="textView7" translatabe="false" >Click the button above to take a picture</string>
-    <string name ="editText1" translatable="false">Type email here</string>
-    <string name ="editText3" translatable="false">Type email here</string>
+    <string name="textView1">Enter your email address: </string>
+    <string name="textView2">Type your password:</string>
+    <string name = "button">Login</string>
+    <string name="yourprofile">Your profile</string>
+    <string name="yourname">Your name:</string>
+    <string name="youremail">Your email:</string>
+    <string name="yourpicture">Your picture</string>
+    <string name="clickthebuttontotakeapicture" >Click the button above to take a picture</string>
+    <string name ="enteryourname">Enter your name</string>
+    <string name ="enteryouremail">Enter your email</string>
+
 </resources>

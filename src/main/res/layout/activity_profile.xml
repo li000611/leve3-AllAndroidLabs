@@ -6,41 +6,41 @@
     >
 
     <TextView
-        android:text="Your profile"
+        android:text="@string/yourprofile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"/>
+        android:id="@+id/yourprofile"/>
 
     <TextView
-        android:text="Your name:"
+        android:text="@string/yourname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"/>
+        android:id="@+id/yourname"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/enteryourname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:hint="@string/enteryourname" />
 
     <TextView
-        android:text="Your email:"
+        android:text="@string/youremail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5"/>
+        android:id="@+id/youremail"/>
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/enteryouremail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/editText3"/>
+        android:hint="@string/enteryouremail"/>
 
 
     <TextView
-        android:text="Your picture"
+        android:text="@string/yourpicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView6"/>
+        android:id="@+id/yourpicture"/>
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -50,9 +50,9 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:text="Click the button above to take a picture"
+        android:text="@string/clickthebuttontotakeapicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView7"/>
+        android:id="@+id/clickthebuttontotakeapicture"/>
 
 </LinearLayout>

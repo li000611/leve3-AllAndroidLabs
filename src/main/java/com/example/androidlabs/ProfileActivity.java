@@ -22,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         Intent fromMain = getIntent();
         String email = fromMain.getStringExtra("email");
-        EditText editText = findViewById(R.id.editText3);
+        EditText editText = findViewById(R.id.enteryouremail);
 
         editText.setText(email);
         imageButton.setOnClickListener(click -> {
