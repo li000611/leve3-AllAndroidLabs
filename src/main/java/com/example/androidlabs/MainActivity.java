@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPause () {
             super.onPause();
             prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
-            String previous = prefs.getString("email", "matilda@gmail.com");
+            String previous = prefs.getString("email", " ");
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("email", editText.getText().toString());
             editor.commit();

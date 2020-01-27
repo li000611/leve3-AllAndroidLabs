@@ -1,6 +1,4 @@
 package com.example.androidlabs;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent fromMain = getIntent();
         String email = fromMain.getStringExtra("email");
         EditText editText = findViewById(R.id.editText3);
+
         editText.setText(email);
         imageButton.setOnClickListener(click -> {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -32,9 +31,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
-
-
-
     }
 
     @Override
