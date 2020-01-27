@@ -10,4 +10,5 @@
     <string name="textView6" translatable="false">Your picture</string>
     <string name="textView7" translatabe="false" >Click the button above to take a picture</string>
     <string name ="editText1" translatable="false">Type email here</string>
+    <string name ="editText3" translatable="false">Type email here</string>
 </resources>
