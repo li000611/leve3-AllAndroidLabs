@@ -11,5 +11,10 @@
     <string name="enteryourname" >输入你的名字</string>
     <string name="enteryouremail" >输入你的邮箱</string>
     <string name = "button">进入</string>
+    <string name = "addButton">去聊天</string>
+    <string name = "sendButton">发送</string>
+    <string name = "typeHere">在这儿打字</string>
+    <string name = "receiveButton">接收</string>
+    <string name = "goToChatRoom">去聊天室</string>
 
 </resources>

@@ -3,13 +3,19 @@
     <string name="app_name">Lab3</string>
     <string name="textView1">Enter your email address: </string>
     <string name="textView2">Type your password:</string>
-    <string name = "button">Login</string>
+    <string name="button">Login</string>
     <string name="yourprofile">Your profile</string>
     <string name="yourname">Your name:</string>
     <string name="youremail">Your email:</string>
     <string name="yourpicture">Your picture</string>
-    <string name="clickthebuttontotakeapicture" >Click the button above to take a picture</string>
-    <string name ="enteryourname">Enter your name</string>
-    <string name ="enteryouremail">Enter your email</string>
+    <string name="clickthebuttontotakeapicture">Click the button above to take a picture</string>
+    <string name="enteryourname">Enter your name</string>
+    <string name="enteryouremail">Enter your email</string>
+    <string name = "addButton">Go to chat</string>
+    <string name = "sendButton">SEND</string>
+    <string name = "typeHere">Type here</string>
+    <string name = "receiveButton">RECIVE</string>
+    <string name = "goToChatRoom">Go to chat room</string>
+
 
 </resources>

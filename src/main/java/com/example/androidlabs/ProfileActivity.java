@@ -6,13 +6,18 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
+
 
 public class ProfileActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageButton imageButton;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,14 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
+
+        Button addButton = findViewById(R.id.goToChatRoomButton);
+        if ( addButton != null )
+        addButton.setOnClickListener(click - > {
+                Intent intent = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+                StartActivity(intent);
+        });
+
     }
 
     @Override
@@ -76,4 +89,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    private class MyListAdapter {
+    }
 }
