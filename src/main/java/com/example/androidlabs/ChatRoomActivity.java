@@ -2,9 +2,7 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 
@@ -40,7 +37,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             userType.setText("");
         });
 
-
         receiveButton.setOnClickListener(click -> {
             Message receiveMessage = new Message(2, userType.getText().toString(), true);
             list.add(receiveMessage);
@@ -55,8 +51,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     //What is the message:
                     .setMessage("Do you want to delete this? " +
-                            "The selected row is: "+id+
-                            " The database id id" +id)
+                                "The selected row is: "+id+
+                                "The database id id is: " +id)
 
                     //what the Yes button does:
                     .setPositiveButton("Yes", (click, arg) -> {
