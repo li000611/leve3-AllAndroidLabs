@@ -57,8 +57,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setMessage("Do you want to delete this? " +
                             "The selected row is: "+id+
                             " The database id id" +id)
-//                    .setMessage("The The selected row is: "+id)
-//                    .setMessage("The database id id"+id)
 
                     //what the Yes button does:
                     .setPositiveButton("Yes", (click, arg) -> {
@@ -98,17 +96,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         public View getView(int position, View old, ViewGroup parent) {
             View newView = old;
             LayoutInflater inflater = getLayoutInflater();
-//            Message thisMess = (Message) getItem(position);
-
 
             //make a new row:
             if (list.get(position).isSend()) {
                 newView = inflater.inflate(R.layout.sendbutton_layout, parent, false);
-
-
             } else {
                 newView = inflater.inflate(R.layout.receivebutton_layout, parent, false);
-
             }
             //return it to be put in the table
 
