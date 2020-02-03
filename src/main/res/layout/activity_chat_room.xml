@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatRoomActivity"
->
+    tools:context=".ChatRoomActivity">
 
     <ListView
         android:id = "@+id/theListView"
@@ -18,9 +17,7 @@
         android:layout_height="wrap_content"
         android:text = "@string/sendButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-
-        />
+        android:layout_alignParentStart="true" />
 
 
         <EditText
@@ -30,10 +27,7 @@
             android:hint="@string/typeHere"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/sendButton"
-            android:layout_toLeftOf="@id/receiveButton"
-          />
-
-
+            android:layout_toLeftOf="@id/receiveButton" />
 
     <Button
         android:id="@+id/receiveButton"
@@ -41,9 +35,6 @@
         android:layout_height="wrap_content"
         android:text="@string/receiveButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        />
-
-
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

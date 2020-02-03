@@ -52,7 +52,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     //What is the message:
                     .setMessage("Do you want to delete this? " +
                                 "The selected row is: "+id+
-                                "The database id id is: " +id)
+                                "The database id is: " +id)
 
                     //what the Yes button does:
                     .setPositiveButton("Yes", (click, arg) -> {
