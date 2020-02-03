@@ -16,5 +16,6 @@
     <string name = "typeHere">在这儿打字</string>
     <string name = "receiveButton">接收</string>
     <string name = "goToChatRoom">去聊天室</string>
+    <string name = "typeemailhere">在这里输入邮箱</string>
 
 </resources>

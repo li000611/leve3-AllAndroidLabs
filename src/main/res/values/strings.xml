@@ -16,6 +16,6 @@
     <string name = "typeHere">Type here</string>
     <string name = "receiveButton">RECEIVE</string>
     <string name = "goToChatRoom">Go to chat room</string>
-
+    <string name = "typeemailhere">Type email here</string>
 
 </resources>

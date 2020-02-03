@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
           android:inputType="textEmailAddress"
-          android:hint="Type email here"
+          android:hint="@string/typeemailhere"
         />
 
       <TextView
@@ -35,7 +35,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="@string/button" />
 
 
 </LinearLayout>
