@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -40,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         Button addButton = findViewById(R.id.goToChatRoomButton);
         if ( addButton != null )
         addButton.setOnClickListener(click -> {
-                Intent intent = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, Database.class);
                 startActivity(intent);
         });
 

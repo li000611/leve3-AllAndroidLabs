@@ -13,12 +13,18 @@ public class Message {
         this.isSend = isSend;
     }
 
+    public void update(String message){
+        message = message;
+    }
+
+    //Chaining constructor:
+    public Message(String message, long id){this(message,0); }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id){
-
     }
 
     public String getMessage(){
