@@ -39,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         Button addButton = findViewById(R.id.goToChatRoomButton);
         if ( addButton != null )
         addButton.setOnClickListener(click -> {
-                Intent intent = new Intent(ProfileActivity.this, Database.class);
+                Intent intent = new Intent(ProfileActivity.this, ChatRoomActivity.class);
                 startActivity(intent);
         });
 
