@@ -195,8 +195,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         public View getView(int position, View old, ViewGroup parent) {
-
-          /*View newView = getLayoutInflater().inflate(R.layout.message_row,parent,false);
+      /*
+          View newView = getLayoutInflater().inflate(R.layout.message_row,parent,false);
 
             Message thisMsg= getItem(position);
 
@@ -205,7 +205,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             rowMes.setText (thisMsg.getMessage());
             rowId.setText("id : " +thisMsg.getId());
-           */
+      */
 
             View newView = old;
             LayoutInflater inflater = getLayoutInflater();

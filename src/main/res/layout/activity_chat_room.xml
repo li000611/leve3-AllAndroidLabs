@@ -27,7 +27,8 @@
             android:hint="@string/typeHere"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/sendButton"
-            android:layout_toLeftOf="@id/receiveButton" />
+            android:layout_toLeftOf="@id/receiveButton"
+           />
 
     <Button
         android:id="@+id/receiveButton"
