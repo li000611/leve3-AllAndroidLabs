@@ -193,6 +193,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     protected void deleteMessage(Message m) {
         db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(m.getId())});
+
     }
 
 
@@ -232,7 +233,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     protected void printCursor(Cursor c, int version ){
 
-        Log.d("Version = ", Integer.toString(version));
+        Log.d("The Version = ", Integer.toString(version));
         Log.d("Number of columns = " ,Integer.toString(c.getColumnCount()));
         Log.d("Column names = ",Arrays.toString(c.getColumnNames()));
         Log.d("Number of results = ",Integer.toString(c.getCount()));
