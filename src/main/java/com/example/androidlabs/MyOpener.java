@@ -7,10 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyOpener extends SQLiteOpenHelper {
 
     protected final static String DATABASE_NAME = "MessageDB";
-    protected final static int VERSION_NUM = 4;
+    protected final static int VERSION_NUM = 5;
     public final static String TABLE_NAME = "MESSAGES";
     public final static String COL_MESSAGE = "MESSAGE";
     public final static String COL_ID = "_id";
+    public final static String COL_SEND = "SEND";
 
     public MyOpener(Context ctx)
     {
@@ -25,7 +26,8 @@ public class MyOpener extends SQLiteOpenHelper {
     {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ("+COL_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
 
-                + COL_MESSAGE  + " text);");  // add or remove columns
+                + COL_MESSAGE  + " text, " +
+                COL_SEND + " INTEGER);");  // add or remove columns
     }
 
 

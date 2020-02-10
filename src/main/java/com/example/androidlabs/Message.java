@@ -15,12 +15,12 @@ public class Message {
     }
 
     //Chaining constructor:
-    public Message(String message, long id) {
-        this(0,"ds",true);
-    }
+  //  public Message(String message, long id) {
+     //   this(0,"ds",true);
+   // }
 
     public void update(String message) {
-        message = message;
+        this.message = message;
     }
 
 

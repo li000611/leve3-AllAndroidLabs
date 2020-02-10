@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
+
     ArrayList<Message> messageList = new ArrayList<>();
     MyOwnAdapter myAdapter;
     private static int ACTIVITY_VIEW_MESSAGE = 33;
     int positionClicked = 0;
     SQLiteDatabase db;
+    public static final String ACTIVITY_NAME = "ChatRoomActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //Now provide a value for every database column defined in MyOpener.java:
             //put string message in the message column:
             newRowValues.put(MyOpener.COL_MESSAGE, message);
+            newRowValues.put(MyOpener.COL_SEND, 1);
 
             //Now insert in the database:
             long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
@@ -91,6 +96,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             //put string message in the EMAIL column:
             newRowValues.put(MyOpener.COL_MESSAGE, message);
+            newRowValues.put(MyOpener.COL_SEND, 0);
+
 
             //Now insert in the database:
             long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
@@ -111,6 +118,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
         //create an adapter ojbect and send it to the listView
         //myList.setAdapter(myAdapter = new MyListAdapter());
+
+
     }
 
     private void loadDataFromDatabase() {
@@ -119,7 +128,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         db = dbOpener.getWritableDatabase();
 
         //we want to get all of the columns. Look at MyOpener.java for the definitions:
-        String[] columns = {MyOpener.COL_ID, MyOpener.COL_MESSAGE};
+        String[] columns = {MyOpener.COL_ID, MyOpener.COL_MESSAGE, MyOpener.COL_SEND};
 
         //query all the results from the database:
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
@@ -128,15 +137,18 @@ public class ChatRoomActivity extends AppCompatActivity {
         //find the column indices:
         int messageColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
         int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
+        int sendColIndex = results.getColumnIndex(MyOpener.COL_SEND);
 
         //iterate over the results, return true if there is a next item:
         while (results.moveToNext()) {
             String message = results.getString(messageColumnIndex);
             long id = results.getLong(idColIndex);
+            boolean isSend = results.getInt(sendColIndex)==1;
 
             //add the new message to the array list
-            messageList.add(new Message(message, id));
+            messageList.add(new Message(id, message,  isSend));
         }
+        printCursor(results, db.getVersion());
     }
 
     protected void showMessage(int position) {
@@ -195,17 +207,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         public View getView(int position, View old, ViewGroup parent) {
-      /*
-          View newView = getLayoutInflater().inflate(R.layout.message_row,parent,false);
-
-            Message thisMsg= getItem(position);
-
-            TextView rowMes =(TextView) newView.findViewById(R.id.edit_msg);
-            TextView rowId = (TextView) newView.findViewById(R.id.msgId);
-
-            rowMes.setText (thisMsg.getMessage());
-            rowId.setText("id : " +thisMsg.getId());
-      */
 
             View newView = old;
             LayoutInflater inflater = getLayoutInflater();
@@ -228,8 +229,20 @@ public class ChatRoomActivity extends AppCompatActivity {
        public long getItemId(int position) {
           return getItem(position).getId();
         }
-
     }
 
+    protected void printCursor(Cursor c, int version ){
 
+        //Cursor cu = db.rawQuery("SELECT " + MyOpener.COL_MESSAGE +" from " + MyOpener.TABLE_NAME ,null);
+        Log.d("Version = ", Integer.toString(version));
+        Log.d("Number of columns = " ,Integer.toString(c.getColumnCount()));
+        Log.d("Column names = ",Arrays.toString(c.getColumnNames()));
+        Log.d("Number of results = ",Integer.toString(c.getCount()));
+            c.moveToFirst();
+            int colIndex = c.getColumnIndex(MyOpener.COL_MESSAGE);
+            for(int i =0; i<c.getCount();i++){
+                Log.d("Results =  ", c.getString(0) + "|" + c.getString(1) + "|" + c.getString(2) );
+                c.moveToNext();
+             }
+    }
 }
