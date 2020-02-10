@@ -29,7 +29,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     private static int ACTIVITY_VIEW_MESSAGE = 33;
     int positionClicked = 0;
     SQLiteDatabase db;
-    public static final String ACTIVITY_NAME = "ChatRoomActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,15 +232,17 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     protected void printCursor(Cursor c, int version ){
 
-        //Cursor cu = db.rawQuery("SELECT " + MyOpener.COL_MESSAGE +" from " + MyOpener.TABLE_NAME ,null);
         Log.d("Version = ", Integer.toString(version));
         Log.d("Number of columns = " ,Integer.toString(c.getColumnCount()));
         Log.d("Column names = ",Arrays.toString(c.getColumnNames()));
         Log.d("Number of results = ",Integer.toString(c.getCount()));
+
             c.moveToFirst();
             int colIndex = c.getColumnIndex(MyOpener.COL_MESSAGE);
             for(int i =0; i<c.getCount();i++){
-                Log.d("Results =  ", c.getString(0) + "|" + c.getString(1) + "|" + c.getString(2) );
+                Log.d("Results =  ", c.getString(0) +
+                                          "|" + c.getString(1) +
+                                          "|" + c.getString(2) );
                 c.moveToNext();
              }
     }

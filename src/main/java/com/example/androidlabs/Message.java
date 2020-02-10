@@ -5,7 +5,7 @@ public class Message {
     private long id;
     private String message;
     private boolean isSend;
-    private boolean isReceived;
+
 
 
     public Message(long id, String message, boolean isSend) {
@@ -14,10 +14,6 @@ public class Message {
         this.isSend = isSend;
     }
 
-    //Chaining constructor:
-  //  public Message(String message, long id) {
-     //   this(0,"ds",true);
-   // }
 
     public void update(String message) {
         this.message = message;
