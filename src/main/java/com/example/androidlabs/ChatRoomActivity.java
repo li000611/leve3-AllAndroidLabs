@@ -241,8 +241,8 @@ public class ChatRoomActivity extends AppCompatActivity {
             int colIndex = c.getColumnIndex(MyOpener.COL_MESSAGE);
             for(int i =0; i<c.getCount();i++){
                 Log.d("Results =  ", c.getString(0) +
-                                          "|" + c.getString(1) +
-                                          "|" + c.getString(2) );
+                                          "/" + c.getString(1) +
+                                          "/" + c.getString(2) );
                 c.moveToNext();
              }
     }
