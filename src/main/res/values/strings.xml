@@ -17,6 +17,6 @@
     <string name="receiveButton">RECEIVE</string>
     <string name="goToChatRoom">Go to chat room</string>
     <string name="typeemailhere">Type email here</string>
-    <string name="weatherForecast">WeatherForest</string>
+    <string name="weatherForecast">WeatherForecast</string>
 
 </resources>
