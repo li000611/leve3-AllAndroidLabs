@@ -11,11 +11,12 @@
     <string name="clickthebuttontotakeapicture">Click the button above to take a picture</string>
     <string name="enteryourname">Enter your name</string>
     <string name="enteryouremail">Enter your email</string>
-    <string name = "addButton">Go to chat</string>
-    <string name = "sendButton">SEND</string>
-    <string name = "typeHere">Type here</string>
-    <string name = "receiveButton">RECEIVE</string>
-    <string name = "goToChatRoom">Go to chat room</string>
-    <string name = "typeemailhere">Type email here</string>
+    <string name="addButton">Go to chat</string>
+    <string name="sendButton">SEND</string>
+    <string name="typeHere">Type here</string>
+    <string name="receiveButton">RECEIVE</string>
+    <string name="goToChatRoom">Go to chat room</string>
+    <string name="typeemailhere">Type email here</string>
+    <string name="weatherForecast">WeatherForest</string>
 
 </resources>

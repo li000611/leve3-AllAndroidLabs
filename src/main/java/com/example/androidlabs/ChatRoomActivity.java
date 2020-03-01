@@ -26,8 +26,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     ArrayList<Message> messageList = new ArrayList<>();
     MyOwnAdapter myAdapter;
-    private static int ACTIVITY_VIEW_MESSAGE = 33;
-    int positionClicked = 0;
     SQLiteDatabase db;
 
     @Override
