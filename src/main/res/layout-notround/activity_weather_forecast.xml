@@ -8,56 +8,52 @@
         android:id="@+id/weatherImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_gravity="center" />
+         />
 
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="Current temperature:"/>
 
     <EditText
         android:id="@+id/currentTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="Min temperature:"/>
 
     <EditText
         android:id="@+id/minWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="Max temperature:"/>
 
     <EditText
         android:id="@+id/maxWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+       />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+
         android:text="UV rating:"/>
 
     <EditText
         android:id="@+id/uvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -66,7 +62,7 @@
         android:visibility="invisible"
         android:max="100"
         android:progress="18"
-        android:layout_gravity="center"
+
 
         style="?android:attr/progressBarStyleHorizontal"/>
 
@@ -75,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_gravity="center"/>
+        />
 
     <!--style="@style/Widget.AppCompat.ProgressBar.Horizontal" -->
 
