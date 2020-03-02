@@ -27,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enteryourname"
-        android:nextFocusDown="@id/enteryourname">
+
+       />
 
     <TextView
         android:text="@string/youremail"
@@ -40,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enteryouremail"
-        android:nextFocusUp="@id/enteryouremail"/>
+        />
 
 
     <TextView
@@ -68,7 +69,7 @@
         android:layout_width="wrap_content"
         android:text = "@string/goToChatRoom"
         android:layout_gravity="center"
-        android:nextFocusRight="@id/goToChatRoomButton"/>
+       />
 
     <Button
         android:id="@+id/weatherForecast"
@@ -76,6 +77,6 @@
         android:layout_width="wrap_content"
         android:text = "@string/weatherForecast"
         android:layout_gravity="center"
-        android:nextFocusLeft="@id/weatherForecast"/>
+        />
 
 </LinearLayout>
