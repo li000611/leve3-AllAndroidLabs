@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.wear.widget.BoxInsetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/weatherImage"
         android:layout_width="200dp"
@@ -74,6 +78,7 @@
         />
 
     <!--style="@style/Widget.AppCompat.ProgressBar.Horizontal" -->
+    </androidx.wear.widget.BoxInsetLayout>
 
-
+    
 </LinearLayout>
