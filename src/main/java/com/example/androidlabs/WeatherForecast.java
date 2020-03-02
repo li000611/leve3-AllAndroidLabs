@@ -154,7 +154,7 @@ public class WeatherForecast extends AppCompatActivity {
                     Log.e(ACTIVITY_NAME, "Weather image exists, found locally");
 
                     int responseCode = connection.getResponseCode();
-                    if (responseCode == 200) {
+                  if (responseCode == 200 ) {
                         image = BitmapFactory.decodeStream(connection.getInputStream());
                     }
 
