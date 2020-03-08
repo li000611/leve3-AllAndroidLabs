@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,8 +22,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.example.androidlabs.MyOpener.COL_ID;
+import static com.example.androidlabs.MyOpener.TABLE_NAME;
+
 
 public class ChatRoomActivity extends AppCompatActivity {
+    public static final String ITEM_SELECTED = "ITEM";
+    public static final String ITEM_POSITION = "POSITION";
+    public static final String ITEM_ID = "ID";
+    public static final int EMPTY_ACITVITY = 345;
 
     ArrayList<Message> messageList = new ArrayList<>();
     MyOwnAdapter myAdapter;
@@ -38,11 +46,14 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button receiveButton = findViewById(R.id.receiveButton);
         EditText userType = findViewById(R.id.typeHere);
 
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the Fragment is loaded
+
         //get any previously saved Message objects
         loadDataFromDatabase();
 
          myAdapter = new MyOwnAdapter();
          myList.setAdapter(myAdapter);
+
 
         //This listener for items being clicked in the list view)
         myList.setOnItemClickListener(((parent, view, position, id) -> {
@@ -63,7 +74,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             newRowValues.put(MyOpener.COL_SEND, 1);
 
             //Now insert in the database:
-            long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
+            long newId = db.insert(TABLE_NAME, null, newRowValues);
 
             //now you have the newId, you can create the Message object
 
@@ -97,7 +108,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
             //Now insert in the database:
-            long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
+            long newId = db.insert(TABLE_NAME, null, newRowValues);
 
             //now you have the newId, you can create the Message object
             Message newMe = new Message(newId, message, false);
@@ -116,8 +127,33 @@ public class ChatRoomActivity extends AppCompatActivity {
         //create an adapter ojbect and send it to the listView
         //myList.setAdapter(myAdapter = new MyListAdapter());
 
+        myList.setOnItemClickListener((list,item,position, id) ->{
+            //Create a bundle to pass data to the new fragment
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(ITEM_SELECTED, messageList.get(position).toString());
+            dataToPass.putInt(ITEM_POSITION, position);
+            dataToPass.putLong(ITEM_ID,messageList.get(position).getId());
+
+            if(isTablet){
+                DetailsFragment dFragment = new DetailsFragment();//add a DeaailFrament
+                dFragment.setArguments(dataToPass);//Pass it a bundle for information
+                dFragment.setTablet(true);//tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, dFragment)//Add the fragment in FrameLayout
+                        .commit();
+                 }else//isPhone
+                 {
+                      Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                      nextActivity.putExtras(dataToPass);//send dat t next activity
+                     startActivity(nextActivity);//make the transition
+                 }
+
+        });
 
     }
+
+
 
     private void loadDataFromDatabase() {
         //get a database connection:
@@ -125,15 +161,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         db = dbOpener.getWritableDatabase();
 
         //we want to get all of the columns. Look at MyOpener.java for the definitions:
-        String[] columns = {MyOpener.COL_ID, MyOpener.COL_MESSAGE, MyOpener.COL_SEND};
+        String[] columns = {COL_ID, MyOpener.COL_MESSAGE, MyOpener.COL_SEND};
 
         //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, TABLE_NAME, columns, null, null, null, null, null, null);
 
         //Now the results object has rows of results that math the query.
         //find the column indices:
         int messageColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
-        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
+        int idColIndex = results.getColumnIndex(COL_ID);
         int sendColIndex = results.getColumnIndex(MyOpener.COL_SEND);
 
         //iterate over the results, return true if there is a next item:
@@ -186,12 +222,26 @@ public class ChatRoomActivity extends AppCompatActivity {
         updatedValues.put(MyOpener.COL_MESSAGE, m.getMessage());
 
         //now call the update function:
-        db.update(MyOpener.TABLE_NAME, updatedValues, MyOpener.COL_ID + "= ?", new String[]{Long.toString(m.getId())});
+        db.update(TABLE_NAME, updatedValues, COL_ID + "= ?", new String[]{Long.toString(m.getId())});
     }
 
     protected void deleteMessage(Message m) {
-        db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(m.getId())});
+        db.delete(TABLE_NAME, COL_ID + "= ?", new String[]{Long.toString(m.getId())});
 
+    }
+
+    public void deleteMessageId(int id) {
+
+        String where = COL_ID + "=" + id;
+//        int result = db.delete(MyDatabaseOpenHelper.TABLE_NAME, where, null);
+        int result = db.delete(TABLE_NAME, COL_ID + "=?", new String[]{String.valueOf(id)});
+
+
+        if (result > 0) {
+            myAdapter.deleteItem(id);
+        }
+
+        Log.i("Delete this message", " id=" + id);
     }
 
 
@@ -226,6 +276,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         //last week we returned (long) position. Now we return the object's database id that we get from line 73
        public long getItemId(int position) {
           return getItem(position).getId();
+        }
+
+        public void deleteItem(long id) {
+            for (Message msg : messageList) {
+                if (msg.getId() == id) {
+                    messageList.remove(msg);
+                    notifyDataSetChanged();
+                    break;
+                }
+            }
         }
     }
 
