@@ -1,6 +1,7 @@
 package com.example.androidlabs;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,11 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class DetailsFragment extends Fragment {
+    private AppCompatActivity parentActivity;
     private boolean isTablet;
     private Bundle dataFromActivity;
     private long id;
@@ -52,21 +57,28 @@ public class DetailsFragment extends Fragment {
                 ChatRoomActivity parent = (ChatRoomActivity) getActivity();
                 parent.deleteMessageId((int) id); //this deletes the item and updates the list
 
-                //now remove the fragment since you deleted it from the database
+                //now remove the fragment since you hided it from the database
                 //this is the object to be removed, so remove(this):
                 parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
             //for phone:
             //You are only looking at the details, you need to go back to the previous list page
             else {
-                EmptyActivity parent = (EmptyActivity) getActivity();
-                Intent backToFragmentExample = new Intent();
-                backToFragmentExample.putExtra(ChatRoomActivity.ITEM_ID, dataFromActivity.getLong(ChatRoomActivity.ITEM_ID));
-
-                parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()
+                ChatRoomActivity parent = (ChatRoomActivity) getActivity();
+                parent.deleteMessageId((int) id);//this deletes the item and updates the list
+                parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
+                Intent backToChatRoomActivity = new Intent();
+                backToChatRoomActivity.putExtra(ChatRoomActivity.ITEM_ID, dataFromActivity.getLong(ChatRoomActivity.ITEM_ID));
+                parent.setResult(Activity.RESULT_OK, backToChatRoomActivity); //send data back to ChatRoomActivity in onActivityResult()
                 parent.finish();
             }
         });
         return result;
+    }
+    @Override //need this method to make the hideButton work
+    public void onAttach(Context context){
+        super.onAttach(context);
+        //Context will either be DetailsFragment for a tablet, or EmptyActivity for a phone
+        parentActivity = (AppCompatActivity)context;
     }
 }
