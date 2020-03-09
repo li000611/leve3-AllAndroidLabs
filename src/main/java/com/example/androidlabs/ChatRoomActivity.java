@@ -30,7 +30,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     public static final String ITEM_SELECTED = "ITEM";
     public static final String ITEM_POSITION = "POSITION";
     public static final String ITEM_ID = "ID";
-    public static final int EMPTY_ACITVITY = 345;
+    private static final int EMPTY_ACTIVITY = 345;
 
     ArrayList<Message> messageList = new ArrayList<>();
     MyOwnAdapter myAdapter;
@@ -54,14 +54,13 @@ public class ChatRoomActivity extends AppCompatActivity {
          myAdapter = new MyOwnAdapter();
          myList.setAdapter(myAdapter);
 
-
         //This listener for items being clicked in the list view)
-        myList.setOnItemClickListener(((parent, view, position, id) -> {
+        myList.setOnItemLongClickListener(((parent, view, position, id) -> {
             showMessage(position);
+            return true;
         }));
 
         sendButton.setOnClickListener(click -> {
-
             //get the message that were typed
             String message = userType.getText().toString();
 
@@ -93,19 +92,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         receiveButton.setOnClickListener(click -> {
-
             //get the message that were typed
             String message = userType.getText().toString();
 
             //add to the database and get the new ID
             ContentValues newRowValues = new ContentValues();
 
-            //Now provide a value for every database column defined in MyOpener.java:
-
             //put string message in the EMAIL column:
             newRowValues.put(MyOpener.COL_MESSAGE, message);
             newRowValues.put(MyOpener.COL_SEND, 0);
-
 
             //Now insert in the database:
             long newId = db.insert(TABLE_NAME, null, newRowValues);
@@ -122,8 +117,8 @@ public class ChatRoomActivity extends AppCompatActivity {
             userType.setText("");
 
             //Show the id of the inserted item:
-            Toast.makeText(this, "Inreceived item id:" + newId, Toast.LENGTH_LONG).show();
-        });
+            Toast.makeText(this, "IsReceived item id:" + newId, Toast.LENGTH_LONG).show();
+             });
         //create an adapter ojbect and send it to the listView
         //myList.setAdapter(myAdapter = new MyListAdapter());
 
@@ -135,7 +130,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             dataToPass.putLong(ITEM_ID,messageList.get(position).getId());
 
             if(isTablet){
-                DetailsFragment dFragment = new DetailsFragment();//add a DeaailFrament
+                DetailsFragment dFragment = new DetailsFragment();//add a DetailFrament
                 dFragment.setArguments(dataToPass);//Pass it a bundle for information
                 dFragment.setTablet(true);//tell the fragment if it's running on a tablet or not
                 getSupportFragmentManager()
@@ -145,15 +140,11 @@ public class ChatRoomActivity extends AppCompatActivity {
                  }else//isPhone
                  {
                       Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-                      nextActivity.putExtras(dataToPass);//send dat t next activity
-                     startActivity(nextActivity);//make the transition
+                      nextActivity.putExtras(dataToPass);//send data to next activity
+                      startActivityForResult(nextActivity, EMPTY_ACTIVITY);//make the transition
                  }
-
         });
-
     }
-
-
 
     private void loadDataFromDatabase() {
         //get a database connection:
@@ -198,20 +189,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         rowId.setText("id:" + selectedMessage.getId());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("You clicked on item #" + position)
-                .setMessage("You can update the fields and then click update to save in the database")
+        builder.setTitle("Do you want to delete this" + position)
+                .setMessage("The selected row is: " + position)
+                            //"\n The database id is: " + id)
                 .setView(message_view) //add the 1 edit text showing the message information
-                .setPositiveButton("Update", (click, b) -> {
-                    selectedMessage.update(rowMessage.getText().toString());
-                    updateMessage(selectedMessage);
-                    myAdapter.notifyDataSetChanged(); //the message have changed so rebuild the list
-                })
-                .setNegativeButton("Delete", (click, b) -> {
+                .setPositiveButton("Yes", (click, b) -> {
                     deleteMessage(selectedMessage); //remove the contact from database
                     messageList.remove(position); //remove the contact from contact list
                     myAdapter.notifyDataSetChanged(); //there is one less item so update the list
                 })
-                .setNeutralButton("dismiss", (click, b) -> {
+                .setNegativeButton("No", (click, b) -> {
                 })
                 .create().show();
     }
@@ -230,17 +217,25 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-    public void deleteMessageId(int id) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EMPTY_ACTIVITY) {
+            if (resultCode == RESULT_OK) //if you hit the hide button
+            {
+                long id = data.getLongExtra(ITEM_ID, 0);
+                deleteMessageId((int) id);
+            }
+        }
+    }
 
+    public void deleteMessageId(int id) {
         String where = COL_ID + "=" + id;
 //        int result = db.delete(MyDatabaseOpenHelper.TABLE_NAME, where, null);
         int result = db.delete(TABLE_NAME, COL_ID + "=?", new String[]{String.valueOf(id)});
-
-
         if (result > 0) {
             myAdapter.deleteItem(id);
         }
-
         Log.i("Delete this message", " id=" + id);
     }
 
@@ -252,6 +247,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         public Message getItem(int position) {
             return messageList.get(position);
+        }
+        //last week we returned (long) position. Now we return the object's database id that we get from line 73
+        public long getItemId(int position) {
+            return getItem(position).getId();
         }
 
         public View getView(int position, View old, ViewGroup parent) {
@@ -273,11 +272,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             return newView;
         }
 
-        //last week we returned (long) position. Now we return the object's database id that we get from line 73
-       public long getItemId(int position) {
-          return getItem(position).getId();
-        }
-
         public void deleteItem(long id) {
             for (Message msg : messageList) {
                 if (msg.getId() == id) {
@@ -290,7 +284,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     protected void printCursor(Cursor c, int version ){
-
         Log.d("The Version = ", Integer.toString(version));
         Log.d("Number of columns = " ,Integer.toString(c.getColumnCount()));
         Log.d("Column names = ",Arrays.toString(c.getColumnNames()));
