@@ -2,6 +2,7 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +47,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button sendButton = findViewById(R.id.sendButton);
         Button receiveButton = findViewById(R.id.receiveButton);
         EditText userType = findViewById(R.id.typeHere);
-
-        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the Fragment is loaded
+        FrameLayout frameLayout = findViewById(R.id.fragmentLocation);
+        boolean isTablet =  frameLayout != null; //check if the Fragment is loaded
 
         //get any previously saved Message objects
         loadDataFromDatabase();
@@ -188,19 +190,29 @@ public class ChatRoomActivity extends AppCompatActivity {
         rowMessage.setText(selectedMessage.getMessage());
         rowId.setText("id:" + selectedMessage.getId());
 
+        FrameLayout frameLayout = findViewById(R.id.fragmentLocation);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Do you want to delete this" + position)
                 .setMessage("The selected row is: " + position)
                             //"\n The database id is: " + id)
                 .setView(message_view) //add the 1 edit text showing the message information
                 .setPositiveButton("Yes", (click, b) -> {
-                    deleteMessage(selectedMessage); //remove the contact from database
+                    deleteMessage(selectedMessage); //remove the message from database
+
+                    if(frameLayout != null){
+                        for(Fragment fragment : getSupportFragmentManager().getFragments()){
+                            if(fragment.getArguments().getLong(ITEM_ID) == Long.valueOf(myAdapter.getItemId(position))) {
+                                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                                break;
+                            }
+                        }
+                    }
                     messageList.remove(position); //remove the contact from contact list
                     myAdapter.notifyDataSetChanged(); //there is one less item so update the list
-                })
-                .setNegativeButton("No", (click, b) -> {
-                })
-                .create().show();
+                    })
+                 .setNegativeButton("No", null)
+                 .show();
+    //return true;
     }
 
     protected void updateMessage(Message m) {
