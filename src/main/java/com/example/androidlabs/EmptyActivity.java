@@ -14,7 +14,7 @@ public class EmptyActivity extends AppCompatActivity {
         Bundle dataToPass = getIntent().getExtras(); //get the data that was passed from FragmentExample
         /* So far the screen is blank */
         //This is copied directly from FragmentExample.java lines 47-54
-        DetailsFragment dFragment = new DetailsFragment();//add a DeaailFrament
+        DetailsFragment dFragment = new DetailsFragment();//add a DetailsFrament
         dFragment.setArguments(dataToPass);//Pass it a bundle for information
         dFragment.setTablet(true);//tell the fragment if it's running on a tablet or not
         getSupportFragmentManager()
