@@ -34,6 +34,7 @@ public class DetailsFragment extends Fragment {
 
         dataFromActivity = getArguments();
         id = dataFromActivity.getLong(ChatRoomActivity.ITEM_ID);
+        checked = dataFromActivity.getBoolean(ChatRoomActivity.ITEM_ISSEND);
 
         //Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.fragment_details, container, false);
@@ -52,26 +53,8 @@ public class DetailsFragment extends Fragment {
         //get the hideButton, and add a click listener:
         Button hideButton = (Button) result.findViewById(R.id.hideButton);
         hideButton.setOnClickListener(clk -> {
-
-            if (isTablet) { //both the list and details are on the screen
-                ChatRoomActivity parent = (ChatRoomActivity) getActivity();
-                parent.deleteMessageId((int) id); //this deletes the item and updates the list
-
-                //now remove the fragment since you hided it from the database
-                //this is the object to be removed, so remove(this):
-                parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
-            }
-            //for phone:
-            //You are only looking at the details, you need to go back to the previous list page
-            else {
-                ChatRoomActivity parent = (ChatRoomActivity) getActivity();
-                parent.deleteMessageId((int) id);//this deletes the item and updates the list
-                parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
-                Intent backToChatRoomActivity = new Intent();
-                backToChatRoomActivity.putExtra(ChatRoomActivity.ITEM_ID, dataFromActivity.getLong(ChatRoomActivity.ITEM_ID));
-                parent.setResult(Activity.RESULT_OK, backToChatRoomActivity); //send data back to ChatRoomActivity in onActivityResult()
-                parent.finish();
-            }
+            //Tell parent activity to remove
+            parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
         });
         return result;
     }
