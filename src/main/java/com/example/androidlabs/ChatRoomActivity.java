@@ -32,6 +32,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     public static final String ITEM_SELECTED = "ITEM";
     public static final String ITEM_POSITION = "POSITION";
     public static final String ITEM_ID = "ID";
+    public static final String ITEM_ISSEND = "ITEM_ISSEND";
     private static final int EMPTY_ACTIVITY = 345;
 
     ArrayList<Message> messageList = new ArrayList<>();
@@ -130,6 +131,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             dataToPass.putString(ITEM_SELECTED, messageList.get(position).toString());
             dataToPass.putInt(ITEM_POSITION, position);
             dataToPass.putLong(ITEM_ID,messageList.get(position).getId());
+            dataToPass.putBoolean(ITEM_ISSEND, messageList.get(position).isSend());
 
             if(isTablet){
                 DetailsFragment dFragment = new DetailsFragment();//add a DetailFrament
