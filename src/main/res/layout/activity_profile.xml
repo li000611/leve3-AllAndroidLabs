@@ -71,4 +71,12 @@
         android:layout_gravity="center"
         />
 
+    <Button
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text = "@string/goToToolbarPage"
+        android:layout_gravity="center"
+        />
+
 </LinearLayout>
