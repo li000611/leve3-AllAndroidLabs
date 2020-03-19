@@ -3,32 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/item1"
-        android:title = "Item1"
+        android:title="@string/item1"
         android:icon="@drawable/print"
-        android:orderInCatergory="100"
-        app:showAsAction="ifRoom"/>
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/item2"
-        android:title="Item2"
+        android:title="@string/item2"
         android:icon="@drawable/download"
-        android:orderInCatergory="200"
-        android:showsAcion="ifRoom"/>
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom"/>
 
-    <item android:id="+id/item3"
-        android:title="Item3"
+    <item android:id="@+id/item3"
+        android:title="@string/item3"
         android:icon="@drawable/cloudstorage"
         android:orderInCategory="300"
-        app:showsAction="ifRoom"/>
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/item4"
-        android:title="Item4"
+        android:title="@string/item4"
         android:orderInCategory="400"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="+id/search_item"
+    <item android:id="@+id/search_item"
         app:actionViewClass="android.widget.SearchView"
         android:icon="@android:drawable/ic_search_category_default"
         app:showAsAction="always|collapseActionView"
-        android:title="Search"/>
+        android:title="@string/search"/>
 
 </menu>
