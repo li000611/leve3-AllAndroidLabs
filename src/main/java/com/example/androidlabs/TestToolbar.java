@@ -1,89 +1,81 @@
 package com.example.androidlabs;
 
-import android.content.DialogInterface;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
-import com.google.android.material.snackbar.Snackbar;
 
 
-
-public class TestToolbar extends AppCompatActivity {
+public class TestToolbar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     Toolbar myToolbar;
-    String message="Toolbar test!";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_toolbar);
+
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        //For NavigationDrawer:
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer, myToolbar, R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.search_item);
-        SearchView sView = (SearchView)searchItem.getActionView();
-        sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return true;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return true;
-            }  });
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.item1:
-                Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"You clicked on Printer",Toast.LENGTH_LONG).show();
                 break;
             case R.id.item2:
-                alertExample();
+                Toast.makeText(this,"You clicked on Download",Toast.LENGTH_LONG).show();
+                break;
             case R.id.item3:
-                 Snackbar sb = Snackbar.make(myToolbar, "Go Back?", Snackbar.LENGTH_LONG)
-                         .setAction("Finish", e-> finish());
-                 sb.show();
+                Toast.makeText(this,"You clicked on here",Toast.LENGTH_LONG).show();
                  break;
-            case R.id.item4:
-                Toast.makeText(this,"You clicked on the overflow menu",Toast.LENGTH_LONG).show();
             }
             return true;
     }
 
-    private void alertExample() {
-        View middle = getLayoutInflater().inflate(R.layout.item2_dialogbox, null);
-        EditText et = (EditText)middle.findViewById(R.id.textView13);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("The Message")
-                .setPositiveButton("Positive",new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        message=et.getText().toString();
-                    }
-                })
-                .setNegativeButton("Negative", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id){
-                        }
-                }).setView(middle);
-        builder.create().show();
+ @Override
+    public boolean onNavigationItemSelected(MenuItem item){
+        switch(item.getItemId())
+        {
+            case R.id.id_chat:
+                Intent chatIntent = new Intent (this,ChatRoomActivity.class);
+                startActivity(chatIntent);
+                break;
+            case R.id.id_weather:
+                Intent weatherIntent = new Intent(this,WeatherForecast.class);
+                startActivity(weatherIntent);
+                break;
+            case R.id.id_login:
+                Intent loginIntent = new Intent(this,ProfileActivity.class);
+                setResult(500);
+                finish();
+                break;
+        }
+        return false;
     }
-
-
 }
